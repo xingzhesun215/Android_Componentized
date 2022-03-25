@@ -1,0 +1,53 @@
+apply from: "../config.gradle"
+
+if (isModuleA_To_Main.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+android {
+    compileSdkVersion versions["compileSdkVersion"]
+    buildToolsVersion versions["buildToolsVersion"]
+
+    defaultConfig {
+        if (isModuleA_To_Main.toBoolean() == false) {
+            applicationId versions["applicationId_A"]
+        }
+
+        minSdkVersion versions["minSdkVersion"]
+        targetSdkVersion versions["targetSdkVersion"]
+        versionCode versions["versionCode"]
+        versionName versions["versionName"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            if (isModuleA_To_Main.toBoolean()) {//此时为集成开发,合 将module目录下分开
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude 'module/**'  //将java/module下的所有代码不并入到集成化开发中
+                }
+            } else { //此时为组件开发,各开发各的
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation project(path: ':commonlibrary')
+
+}

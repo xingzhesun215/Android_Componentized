@@ -1,0 +1,48 @@
+/**
+ * 全局统一配置
+ */
+ext {
+    /**
+     * module开关统一声明在此处
+     * true：module作为application，可单独打包为apk
+     * false：module作为library，可作为宿主的依赖库
+     *
+     * module_a是否作为库依赖到主项目上 false表示module_a可单独运行 true表示module_a是个库
+     */
+    isModuleA_To_Main = true
+    /**
+     * app keystore相关信息
+     */
+    keyinfo = [
+            key_alias : "androidkey",
+            key_password : "android",
+            store_file : "android.keystore",
+            store_password : "android",
+    ]
+    /**
+     * Android编译版本 统一管理
+     */
+    versions = [
+            buildToolsVersion : "30.0.3",
+
+            applicationId_Main: "com.sun.module_main",
+            applicationId_A   : "com.sun.module_a",
+            versionCode       : 100,
+            versionName       : "1.0.0",
+
+            compileSdkVersion : 28,
+            minSdkVersion     : 21,
+            targetSdkVersion  : 28,
+    ]
+
+    /**
+     * 特意区别dependencies,免得关键字干扰
+     * 第三方依赖库统一管理
+     */
+
+    dependencyss = [
+            //方法数超过65535解决方法64K MultiDex分包方法
+            "multidex": "androidx.multidex:multidex:2.0.0",
+    ]
+
+}

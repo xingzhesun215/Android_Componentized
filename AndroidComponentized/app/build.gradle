@@ -1,0 +1,66 @@
+//优先加载配置文件
+apply from: "../config.gradle"
+apply plugin: 'com.android.application'
+
+
+android {
+
+    compileSdkVersion versions["compileSdkVersion"]
+    buildToolsVersion versions["buildToolsVersion"]
+
+    defaultConfig {
+
+        applicationId versions["applicationId_Main"]
+        minSdkVersion versions["minSdkVersion"]
+        targetSdkVersion versions["targetSdkVersion"]
+        versionCode versions["versionCode"]
+        versionName versions["versionName"]
+
+        //加上配置,在代码层判断是否moduleA是否被依赖到当前项目
+        buildConfigField("boolean", "isModuleA_To_Main", String.valueOf(isModuleA_To_Main))
+    }
+    //正式包签名信息,统一管理
+    signingConfigs {
+        release {
+            storeFile file(keyinfo["store_file"])
+            keyAlias keyinfo["key_alias"]
+            keyPassword keyinfo["key_password"]
+            storePassword keyinfo["store_password"]
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //输出apk的格式要求
+    applicationVariants.all { variant ->
+        // apk 输出文件名配置
+        variant.outputs.all { output ->
+            outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + variant.buildType.name
+            if (variant.buildType.name == buildTypes.release.getName()) {
+                outputFileName += '_' + new Date().format('MMdd')
+            }
+            outputFileName += '.apk'
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation project(path: ':commonlibrary')
+    //根据条件判断是否加载
+    if (isModuleA_To_Main.toBoolean()) {
+        implementation project(path: ':moduleA')
+    }
+
+}

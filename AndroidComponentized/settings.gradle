@@ -1,0 +1,4 @@
+include ':commonlibrary'
+include ':moduleA'
+include ':app'
+rootProject.name = "AndroidComponentized"
