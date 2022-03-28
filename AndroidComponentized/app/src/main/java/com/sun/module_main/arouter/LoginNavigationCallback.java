@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.sun.commonlibrary.arouter.ArouterPath;
 
-public class LoginNavigationCallbackImpl implements NavigationCallback {
+public class LoginNavigationCallback implements NavigationCallback {
     @Override //找到了
     public void onFound(Postcard postcard) {
         Log.e("ME_Login", "found=" + postcard.getPath());

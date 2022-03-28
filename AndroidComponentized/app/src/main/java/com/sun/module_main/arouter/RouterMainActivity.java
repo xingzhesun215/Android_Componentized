@@ -49,6 +49,6 @@ public class RouterMainActivity extends BaseActivity {
                 .withInt(RouterDataActivity.INT_KEY, 100)
                 .withString(RouterDataActivity.STRING_KEY, "hello Android组件化")
                 .withObject(RouterDataActivity.STRING_BEAN, bean)
-                .navigation(this, new LoginNavigationCallbackImpl());
+                .navigation(this, new LoginNavigationCallback());
     }
 }

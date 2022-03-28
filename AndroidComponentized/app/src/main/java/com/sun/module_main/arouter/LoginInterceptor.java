@@ -12,7 +12,7 @@ import com.sun.module_main.MyApplication;
 
 //跳转进行切面登录拦截,框架自动处理,需处理不需要登录路径,否则跳去拦截回调函数onInterrupt()
 @Interceptor(name = "login", priority = 6)
-public class LoginInterceptorImpl implements IInterceptor {
+public class LoginInterceptor implements IInterceptor {
     @Override
     public void process(Postcard postcard, InterceptorCallback callback) {
         String path = postcard.getPath();
