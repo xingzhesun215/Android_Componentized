@@ -17,7 +17,7 @@ android {
         //Arouter路由使用
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -38,6 +38,9 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
+    compile dependencyss["arouterapi"]
+    annotationProcessor dependencyss["aroutercompiler"]
 
+    implementation dependencyss["gson"]
 
 }

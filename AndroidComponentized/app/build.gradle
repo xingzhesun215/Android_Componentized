@@ -18,6 +18,13 @@ android {
 
         //加上配置,在代码层判断是否moduleA是否被依赖到当前项目
         buildConfigField("boolean", "isModuleA_To_Main", String.valueOf(isModuleA_To_Main))
+
+        //Arouter路由使用
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     //正式包签名信息,统一管理
     signingConfigs {
@@ -63,4 +70,6 @@ dependencies {
         implementation project(path: ':moduleA')
     }
 
+    compile dependencyss["arouterapi"]
+    annotationProcessor dependencyss["aroutercompiler"]
 }

@@ -43,6 +43,11 @@ ext {
     dependencyss = [
             //方法数超过65535解决方法64K MultiDex分包方法
             "multidex": "androidx.multidex:multidex:2.0.0",
+            //阿里路由使用的2个依赖
+            "arouterapi"     : "com.alibaba:arouter-api:1.5.2",
+            "aroutercompiler": "com.alibaba:arouter-compiler:1.5.2",
+            //解析库
+            "gson":"com.google.code.gson:gson:2.8.8",
     ]
 
 }

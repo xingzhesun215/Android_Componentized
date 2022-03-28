@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.activity.ComponentActivity;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
 public abstract class BaseActivity extends ComponentActivity {
 
     @Override
@@ -14,6 +16,7 @@ public abstract class BaseActivity extends ComponentActivity {
     }
 
     private void init() {
+        ARouter.getInstance().inject(this);
     }
 
     protected void initActivity() {
