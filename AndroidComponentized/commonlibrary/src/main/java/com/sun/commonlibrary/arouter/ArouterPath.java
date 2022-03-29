@@ -13,6 +13,7 @@ public class ArouterPath {
     public static final String APP_RouterLoginActivity="/app/RouterLoginActivity";
     public static final String APP_RouterMainActivity="/app/RouterMainActivity";
     public static final String APP_RouterDataActivity="/app/RouterDataActivity";
+    public static final String APP_RouterFragment="/app/RouterFragment";
 
 
     public static final String MODULEA_RouterDataActivity="/module_a/RouterDataActivity";
